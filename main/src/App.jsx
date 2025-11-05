@@ -121,11 +121,6 @@ export default function App() {
               .
             </h1>
 
-            {/* one-liner */}
-            <p className="mt-4 text-gray-600 leading-relaxed">
-              Clean code, calm mind.
-            </p>
-
             <div className="mt-6 flex gap-3">
               <a
                 href="#projects"
@@ -149,7 +144,7 @@ export default function App() {
               <div className="relative bg-white border border-gray-200 rounded-3xl p-6 shadow-soft">
                 <p className="text-sm text-gray-500">At a glance</p>
                 <p className="mt-2 text-lg">
-                  Diploma student · builds tidy, useful programs.
+                  Clean code, calm mind.
                 </p>
 
                 <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
@@ -196,53 +191,124 @@ export default function App() {
         </div>
       </section>
 
-      {/* SKILLS */}
+      {/* SKILLS — Bubble style */}
       <section id="skills" className="mx-auto max-w-5xl px-5 py-12">
         <div className="fade-up">
           <h2 className="text-2xl font-semibold">Skills</h2>
+          <p className="mt-2 text-gray-500 text-sm">
+            A quick visual map of what I use, learn and enjoy building with.
+          </p>
 
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Languages */}
-            <div className="p-4 rounded-2xl border border-gray-200 bg-white">
-              <h3 className="font-medium">Languages</h3>
-              <ul className="mt-3 text-sm text-gray-600 space-y-1">
-                <li>Java</li>
-                <li>C++</li>
-                <li>Python</li>
-                <li>SQL (Oracle)</li>
-              </ul>
-            </div>
+          {(() => {
+            const CATS = [
+              {
+                title: "Languages",
+                items: [
+                  { label: "Java", tip: "OOP, CLI apps" , grad: "from-amber-200 to-amber-300"},
+                  { label: "C++", tip: "Console systems", grad: "from-sky-200 to-sky-300"},
+                  { label: "Python", tip: "Utilities, study tools", grad: "from-emerald-200 to-emerald-300"},
+                  { label: "SQL (Oracle/MySQL)", tip: "ERD → DDL/DML, reports", grad: "from-indigo-200 to-indigo-300"},
+                  { label: "HTML", tip: "Structure & semantics", grad: "from-rose-200 to-rose-300"},
+                  { label: "React.js", tip: "This site (Vite + Tailwind)", grad: "from-violet-200 to-violet-300"},
+                ],
+              },
+              {
+                title: "Tools & Platforms",
+                items: [
+                  { label: "Git / GitHub", tip: "Project hosting & Pages", grad: "from-teal-200 to-teal-300"},
+                  { label: "VS Code / Visual Studio / NetBeans", tip: "Daily IDEs", grad: "from-zinc-200 to-zinc-300"},
+                  { label: "MySQL / Oracle DB", tip: "SQL Developer", grad: "from-cyan-200 to-cyan-300"},
+                  { label: "Figma", tip: "Wireframes & UI ideas", grad: "from-fuchsia-200 to-fuchsia-300"},
+                  { label: "Packet Tracer", tip: "Networking basics", grad: "from-lime-200 to-lime-300"},
+                  { label: "VirtualBox / DOSBox", tip: "Sandbox & legacy env", grad: "from-stone-200 to-stone-300"},
+                  { label: "Microsoft Office", tip: "Docs & reporting", grad: "from-orange-200 to-orange-300"},
+                ],
+              },
+              {
+                title: "Soft Skills",
+                items: [
+                  { label: "Problem Solving", tip: "Break down, iterate", grad: "from-emerald-200 to-emerald-300"},
+                  { label: "Analytical Thinking", tip: "Trace → reason → fix", grad: "from-blue-200 to-blue-300"},
+                  { label: "Teamwork & Communication", tip: "Share context clearly", grad: "from-pink-200 to-pink-300"},
+                  { label: "Adaptability", tip: "Pick up tools fast", grad: "from-amber-200 to-amber-300"},
+                  { label: "Attention to Detail", tip: "Clean docs & tests", grad: "from-purple-200 to-purple-300"},
+                ],
+              },
+              {
+                title: "Currently Learning & Interests",
+                items: [
+                  { label: "Algorithms & DS", tip: "Practice & patterns", grad: "from-sky-200 to-sky-300"},
+                  { label: "System Design Basics", tip: "Simple, scalable flows", grad: "from-indigo-200 to-indigo-300"},
+                  { label: "Java + MySQL", tip: "Back-end integration", grad: "from-teal-200 to-teal-300"},
+                  { label: "Frontend Fundamentals", tip: "React/Vite/Tailwind", grad: "from-violet-200 to-violet-300"},
+                  { label: "System-level Programming", tip: "CLI & tooling", grad: "from-stone-200 to-stone-300"},
+                  { label: "Automation for Workflow", tip: "Little tools, big help", grad: "from-rose-200 to-rose-300"},
+                ],
+              },
+            ];
 
-            {/* Tools */}
-            <div className="p-4 rounded-2xl border border-gray-200 bg-white">
-              <h3 className="font-medium">Tools</h3>
-              <ul className="mt-3 text-sm text-gray-600 space-y-1">
-                <li>Git · GitHub</li>
-                <li>CLI · ERD → DDL/DML</li>
-                <li>Vite · Tailwind (this site)</li>
-              </ul>
-            </div>
+            // === bubble component ===
+            const Bubble = ({ label, tip, grad }) => (
+              <button
+                type="button"
+                aria-label={label}
+                className={[
+                  "group relative isolate",
+                  "rounded-full bg-gradient-to-br", grad,
+                  "shadow-sm hover:shadow-md",
+                  "transition-transform duration-300 ease-out",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-tea/50",
+                  "flex items-center justify-center",
+                  "size-16 md:size-20",              
+                  "hover:scale-110 focus-visible:scale-110",
+                ].join(" ")}
+              >
+                <span className="pointer-events-none select-none text-[11px] md:text-xs text-gray-800 font-medium px-2 text-center">
+                  {label}
+                </span>
 
-            {/* Strengths */}
-            <div className="p-4 rounded-2xl border border-gray-200 bg-white">
-              <h3 className="font-medium">Strengths</h3>
-              <ul className="mt-3 text-sm text-gray-600 space-y-1">
-                <li>Console apps · CRUD</li>
-                <li>Data modelling & reports</li>
-                <li>Graphs (BFS) basics</li>
-              </ul>
-            </div>
+                {/* tooltip */}
+                {tip && (
+                  <span
+                    className={[
+                      "pointer-events-none absolute left-1/2 -translate-x-1/2",
+                      "top-full mt-2 whitespace-nowrap",
+                      "rounded-lg border border-gray-200 bg-white/95 backdrop-blur px-2 py-1",
+                      "text-[11px] text-gray-600 shadow-sm",
+                      "opacity-0 translate-y-1 transition-all duration-200",
+                      "group-hover:opacity-100 group-hover:translate-y-0",
+                      "group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
+                    ].join(" ")}
+                  >
+                    {tip}
+                  </span>
+                )}
+              </button>
+            );
 
-            {/* Learning */}
-            <div className="p-4 rounded-2xl border border-gray-200 bg-white">
-              <h3 className="font-medium">Learning</h3>
-              <ul className="mt-3 text-sm text-gray-600 space-y-1">
-                <li>Algorithms & Data Structures</li>
-                <li>Testing & debugging habits</li>
-                <li>OS & architecture basics</li>
-              </ul>
-            </div>
-          </div>
+            // 卡片容器
+            const Card = ({ title, items }) => (
+              <div className="p-4 rounded-2xl border border-gray-200 bg-white">
+                <h3 className="font-medium mb-3">{title}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {items.map((it) => (
+                    <Bubble key={it.label} {...it} />
+                  ))}
+                </div>
+              </div>
+            );
+
+            return (
+              <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                {/* line 1：Languages / Tools */}
+                <Card {...CATS[0]} />
+                <Card {...CATS[1]} />
+                {/* line 2：Soft Skills / Learning & Interests */}
+                <Card {...CATS[2]} />
+                <Card {...CATS[3]} />
+              </div>
+            );
+          })()}
         </div>
       </section>
 
